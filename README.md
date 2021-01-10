@@ -8,4 +8,4 @@
     -t: set tags to find
 
 ### Example 
-MoebooruSnatcher.exe -b yande.re -p 1 -t rating:safe
+    MoebooruSnatcher.exe -b yande.re -p 1 -t rating:safe
