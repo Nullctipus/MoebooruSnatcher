@@ -1,0 +1,10 @@
+D:\Users\bustr\source\repos\MoebooruSnatcher\bin\Release\MoebooruSnatcher.exe.config
+D:\Users\bustr\source\repos\MoebooruSnatcher\bin\Release\MoebooruSnatcher.exe
+D:\Users\bustr\source\repos\MoebooruSnatcher\bin\Release\MoebooruSnatcher.pdb
+D:\Users\bustr\source\repos\MoebooruSnatcher\bin\Release\Newtonsoft.Json.dll
+D:\Users\bustr\source\repos\MoebooruSnatcher\bin\Release\Newtonsoft.Json.xml
+D:\Users\bustr\source\repos\MoebooruSnatcher\obj\Release\MoebooruSnatcher.csprojAssemblyReference.cache
+D:\Users\bustr\source\repos\MoebooruSnatcher\obj\Release\MoebooruSnatcher.csproj.CoreCompileInputs.cache
+D:\Users\bustr\source\repos\MoebooruSnatcher\obj\Release\MoebooruSnatcher.csproj.CopyComplete
+D:\Users\bustr\source\repos\MoebooruSnatcher\obj\Release\MoebooruSnatcher.exe
+D:\Users\bustr\source\repos\MoebooruSnatcher\obj\Release\MoebooruSnatcher.pdb
