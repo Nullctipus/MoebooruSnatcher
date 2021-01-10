@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MoebooruSnatcher.Util;
 using MoebooruSnatcher.JsonObjects;
 using Newtonsoft.Json;
 
@@ -21,13 +20,12 @@ namespace MoebooruSnatcher
         static int pages = 0;
         static void Main(string[] args)
         {
-            ConsoleUtils.LogLogoText();
             for (int i = 0; i < args.Length; i++)
             {
                 switch (args[i].ToLower())
                 {
                     case "-h":
-                        ConsoleUtils.Log("-b: set booru\n-d: set directory\n-t: set tags\n-h: this info");
+                        Console.WriteLine("-b: set booru\n-d: set directory\n-t: set tags\n-h: this info");
                         break;
                     case "-b":
                     case "-booru":
@@ -63,7 +61,9 @@ namespace MoebooruSnatcher
             {
                 directory = directory.Replace(c.ToString(), "");
             }
-            ConsoleUtils.Debug(directory);
+#if DEBUG
+            Console.WriteLine(directory);
+#endif
             if (!Directory.Exists(directory)) { Directory.CreateDirectory(directory); }
             List<Piece> pieces = new List<Piece>();
             int i2 = 0;
@@ -71,16 +71,24 @@ namespace MoebooruSnatcher
             {
                 for (int i = 0; i < pages; i++)
                 {
-                    ConsoleUtils.Debug("https://" + booru + "/post.json?page=" + i + "&tags=" + string.Join("%20", tags));
+#if DEBUG
+            Console.WriteLine("https://" + booru + "/post.json?page=" + i + "&tags=" + string.Join("%20", tags));
+#endif
                     string jsonpieces = new WebClient().DownloadString("https://" + booru + "/post.json?page=" + i + "&tags=" + string.Join("%20", tags));
-                    
+
                     // = await HTTPRequest.get(booru + "/post.json?tags=" + tags + "&page="+i);
-                    ConsoleUtils.Debug(jsonpieces);
+#if DEBUG
+            Console.WriteLine(jsonpieces);
+#endif
                     try
                     {
                         pieces.AddRange(JsonConvert.DeserializeObject<List<Piece>>(jsonpieces));
                     }
-                    catch { ConsoleUtils.Error("Failed to parse something"); }
+                    catch {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("[Error] Failed to parse something");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
                 }
 
                 foreach (Piece p in pieces)
@@ -104,7 +112,9 @@ namespace MoebooruSnatcher
                         File.WriteAllBytes(Path.Combine(directory, i2 + name.Substring(name.Length - 4)), data);
                         i2++;
                     }
-                    ConsoleUtils.Success("Downloaded " + name);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("[Success] Downloaded " + name);
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
         }
