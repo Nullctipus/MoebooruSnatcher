@@ -76,7 +76,11 @@ namespace MoebooruSnatcher
                     
                     // = await HTTPRequest.get(booru + "/post.json?tags=" + tags + "&page="+i);
                     ConsoleUtils.Debug(jsonpieces);
-                    pieces.AddRange(JsonConvert.DeserializeObject<List<Piece>>(jsonpieces));
+                    try
+                    {
+                        pieces.AddRange(JsonConvert.DeserializeObject<List<Piece>>(jsonpieces));
+                    }
+                    catch { ConsoleUtils.Error("Failed to parse something"); }
                 }
 
                 foreach (Piece p in pieces)
